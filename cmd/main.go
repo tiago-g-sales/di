@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/tiago-g-sales/di/product"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -13,9 +12,8 @@ func main(){
 	if err != nil {
 		panic(err)
 	}
-	repository := product.NewProductRepository(db)
 
-	usecase := product.NewProductUseCase(repository)
+	usecase := NewUseCase(db)
 
 	product, err := usecase.GetProduct(1)
 	if err != nil {
@@ -26,3 +24,4 @@ func main(){
 
 
 }
+
